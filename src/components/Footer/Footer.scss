@@ -1,0 +1,28 @@
+footer{
+  .footer-wrapper{
+    .footer-links{
+      li{
+        a{
+          font-family: 'Arial';
+          font-weight: 400;
+          font-size: 14px;
+          line-height: 30px;
+          color:var(--black-color);
+        }
+      }
+    }
+    p{
+      font-family: 'Arial';
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 30px;
+      color:var(--black-color);
+    }
+    span{
+      font-family: 'Arial';
+      background-color: rgb(193, 194, 195);
+      color: #4e5f70;
+      font-size: 10px;
+    }
+  }
+}

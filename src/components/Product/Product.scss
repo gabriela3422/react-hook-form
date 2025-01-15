@@ -1,0 +1,27 @@
+.products-list {
+  label{
+    position: relative;
+    input[type='radio']{
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translateX(-50%) translateY(-50%);
+      opacity: 0;
+    }
+  }
+  .product-item {
+    cursor: pointer;
+
+    &:hover {
+      box-shadow: 5px 3px 3px grey;
+    }
+
+    &.product-border {
+      border: 5px solid var(--blue-color);
+    }
+
+    img {
+      max-height: 159px;
+    }
+  }
+}

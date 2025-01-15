@@ -1,0 +1,14 @@
+header{
+  background-color: var(--white-color);
+  .main-logo{
+    img{
+      height: 60px;
+    }
+  }
+  .payment-logo{
+    img{
+      max-width: 500px;
+      width: 100%;
+    }
+  }
+}

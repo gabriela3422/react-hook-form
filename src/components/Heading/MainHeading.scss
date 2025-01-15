@@ -1,0 +1,27 @@
+.main-heading {
+  background-color: var(--orange-color);
+
+  h1 {
+    font-family: "Trebuchet MS";
+    font-weight: 700;
+    color: var(--white-color);
+    line-height: 35px;
+    font-size: 48px;
+    @media(max-width: 991px) {
+      font-size: 28px;
+      line-height: 30px;
+    }
+  }
+
+  p {
+    line-height: 35px;
+    font-size: 26px;
+    font-family: "Trebuchet MS";
+    color: var(--white-color);
+    @media(max-width: 991px) {
+      font-size: 20px;
+      line-height: 30px;
+    }
+  }
+
+}

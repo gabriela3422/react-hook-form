@@ -1,0 +1,78 @@
+.information-section{
+  .information-countdown{
+    .information-countdown__wrapper{
+      border: 1px solid var(--blueLight-color);
+      border-radius: 20px;
+      p{
+        font-family: 'Trebuchet MS';
+        font-size: 20px;
+        line-height: 30px;
+        color: var(--grey-color);
+        span{
+          color: var(--red-color);
+        }
+      }
+    }
+  }
+  .information-content {
+    span {
+      font-family: 'Arial';
+      font-weight: 700;
+      font-size: 36px;
+      line-height: 30px;
+      color: var(--red-color);
+      @media(max-width: 991px){
+        font-size: 26px;
+      }
+    }
+
+    p {
+      max-width: 270px;
+      font-family: 'Trebuchet MS';
+      font-size: 14px;
+      line-height: 30px;
+      color: var(--grey-color);
+    }
+  }
+  .information-banner{
+    img{
+      border: 2px solid rgb(33, 37, 41);
+    }
+  }
+}
+.form-data__section{
+  span{
+    font-size: 14px;
+    line-height: 30px;
+    font-family: 'Arial';
+    color: var(--black-color);
+  }
+}
+
+.guarantee-item{
+  background-color: #edf4f8;
+  .guarantee-item__image {
+    img {
+      max-width: 130px;
+      height: 128px;
+      display: block;
+    }
+  }
+  .guarantee-item__content{
+    span{
+      font-family: "Trebuchet MS";
+      font-weight: 700;
+      font-size: 20px;
+      line-height: 24px;
+      color: var(--grey-color);
+    }
+    p{
+      font-size: 14px;
+      line-height: 24px;
+      color: var(--grey-color);
+      font-family: "Trebuchet MS";
+      font-weight: 400;
+
+    }
+  }
+}
