@@ -6,15 +6,26 @@ import Product from "../../components/Product/Product.jsx";
 import {useState} from "react";
 import Input from "../../components/Form/Input/Input.jsx";
 import {useForm} from "react-hook-form";
+import Select from "../../components/Form/Select/Select.jsx";
+import BillingForm from "../../components/Form/Form/BillingForm.jsx";
+import CheckboxGroup from "../../components/Form/Form/CheckboxGroup.jsx";
+import ShippingForm from "../../components/Form/Form/ShippingForm.jsx";
+import PaymentDetails from "../../components/Form/Form/PaymentDetails.jsx";
+import PaymentItem from "../../components/Form/Form/PaymentItem.jsx";
 
 const Home = () => {
-    const {products} = useData();
+    const {products, country} = useData();
     let {minutes, seconds} = useCounter(15, 0);
 
-    const [activeProductId, setActiveProductId] = useState(null);
+    const [showShipping, setShowShipping] = useState(false);
+
+    const [activeProductId, setActiveProductId] = useState(1);
     const handleChange = (id) => {
         setActiveProductId((prevId) => (prevId === id ? null : id))
     }
+    const handleCheckboxChange = (event) => {
+        setShowShipping(event.target.checked);
+    };
 
     const {
         register,
@@ -26,22 +37,30 @@ const Home = () => {
     } = useForm();
 
     const onSubmit = (data) => {
+
         const formData = new FormData();
+
         for (const key in data) {
             formData.append(key, data[key]);
         }
+
+        if (!formData.get('product') || formData.get('product') === 'null') {
+            formData.set('product', "1");
+        }
+
         console.log('Form Submitted:', Object.fromEntries(formData.entries()));
 
         reset();
     }
+
     const watchAllFields = watch();
 
 
     return (
         <form onSubmit={handleSubmit(onSubmit)}>
             <div className="form-top">
-                <div className="flex items-start justify-between">
-                    <div className="w-100 lg:w-3/5 px-16 my-3.5">
+                <div className="flex flex-wrap items-start justify-center lg:justify-between">
+                    <div className="w-100 lg:w-3/5 px-6 lg:px-16 my-3.5">
                         <div className="information-section">
                             <div className="information-section__wrapper px-8 py-3.5">
                                 <div className="information-countdown">
@@ -77,15 +96,13 @@ const Home = () => {
                             <div className="products-list">
                                 {products.map((product) => (
                                     <label htmlFor={`product-${product.id}`} key={product.id} className="w-full">
-                                        {/*<input type="radio" name="product" value={product.id}*/}
-                                        {/*       id={`product-${product.id}`}/>*/}
                                         <Input
                                             type="radio"
                                             id={`product-${product.id}`}
                                             name="product"
                                             value={product.id}
                                             label={false}
-                                            {...register('product', {required: 'Please select a product.'})}
+                                            {...register('product')}
                                             isEmpty={!watchAllFields.selectedProduct}
                                         />
                                         <Product
@@ -98,7 +115,7 @@ const Home = () => {
                             </div>
                         </div>
                     </div>
-                    <div className="w-100 lg:w-2/5 px-8 my-3.5">
+                    <div className="w-100 lg:w-2/5 px-6 lg:px-8 my-3.5">
                         <section className="form-section">
                             <div className="form-section__wrapper">
                                 <MainHeading
@@ -106,170 +123,22 @@ const Home = () => {
                                     text="Renseignez vos informations de livraison et de paiement"
                                 />
                             </div>
-                            <div className="form-data__section px-8">
-                                <div className="w-full mt-2 px-6">
-                                    <span className="mb-2">Civilité *</span>
-                                    <Input
-                                        type="radio"
-                                        id="billing_civilite_madame"
-                                        name="billing_civilite"
-                                        value="billing_civilite_madame"
-                                        label={true}
-                                        text="Madame"
-                                        {...register('billing_civilite', {required: 'Please select your civilité.'})}
-                                        error={errors.billing_civilite?.message}
-                                        isEmpty={!watchAllFields.billing_civilite}
-                                    />
-                                    <Input
-                                        type="radio"
-                                        id="billing_civilite_monsieur"
-                                        name="billing_civilite"
-                                        value="billing_civilite_monsieur"
-                                        label={true}
-                                        text="Monsieur"
-                                        {...register('billing_civilite', {required: 'Please select your civilité.'})}
-                                        error={errors.billing_civilite?.message}
-                                        isEmpty={!watchAllFields.billing_civilite}
-                                    />
-                                </div>
-                                <div className="w-full mt-2 mb-4">
-                                    <Input
-                                        type="text"
-                                        id="billing_nom"
-                                        name="billing_nom"
-                                        required={true}
-                                        placeholder="Nom *"
-                                        {...register('billing_nom', {required: 'Nom is required.'})}
-                                        error={errors.billing_nom?.message}
-                                        isEmpty={!watchAllFields.billing_nom}
-                                    />
-                                </div>
-                                <div className="w-full mt-2 mb-4">
-                                    <Input
-                                        type="text"
-                                        id="billing_prenom"
-                                        name="billing_prenom"
-                                        required={true}
-                                        placeholder="Prénom *"
-                                        {...register('billing_prenom', {required: 'Prénom is required.'})}
-                                        error={errors.billing_prenom?.message}
-                                        isEmpty={!watchAllFields.billing_prenom}
-                                    />
-                                </div>
-                                <div className="w-full mt-2 mb-4">
-                                    <Input
-                                        type="email"
-                                        id="billing_email"
-                                        name="billing_email"
-                                        required={true}
-                                        placeholder="Email *"
-                                        {...register('billing_email', {
-                                            required: 'Email is required.',
-                                            pattern: {
-                                                value: /\S+@\S+\.\S+/,
-                                                message: 'Email is invalid.',
-                                            },
-
-                                        })}
-                                        error={errors.billing_email?.message}
-                                        isEmpty={!watchAllFields.billing_email}
-                                    />
-                                </div>
-                                <div className="w-full mt-2 mb-4">
-                                    <Input
-                                        type="email"
-                                        id="billing_email_confirmation"
-                                        name="billing_email_confirmation"
-                                        required={true}
-                                        placeholder="Confirmation adresse email *"
-                                        {...register('billing_email_confirmation', {
-                                            required: 'Confirmation email is required.',
-                                            pattern: {
-                                                value: /\S+@\S+\.\S+/,
-                                                message: 'Confirmation email is invalid.',
-                                            },
-                                            validate: (value) =>
-                                                value === getValues('billing_email') || 'Emails do not match.',
-                                        })}
-                                        error={errors.billing_email_confirmation?.message}
-                                        isEmpty={!watchAllFields.billing_email_confirmation}
-                                    />
-                                </div>
-                                <div className="w-full mt-2 mb-4">
-                                    <Input
-                                        type="tel"
-                                        id="billing_phone_number"
-                                        name="billing_phone_number"
-                                        required={true}
-                                        placeholder="Numéro de téléphone"
-                                        {...register('billing_phone_number', {
-                                            required: 'téléphone is required.',
-                                            pattern: {
-                                                value: /^[+]?[(]?[0-9]{1,4}[)]?[-\s./0-9]*$/,
-                                                message: 'Téléphone is invalid.',
-                                            },
-                                        })}
-                                        error={errors.billing_phone_number?.message}
-                                        isEmpty={!watchAllFields.billing_phone_number}
-                                    />
-                                </div>
-                                <div className="w-full mt-2 mb-4">
-                                    <Input
-                                        type="text"
-                                        id="billing_streetAddress"
-                                        name="billing_streetAddress"
-                                        required={true}
-                                        placeholder="Adresse *"
-                                        {...register('billing_streetAddress', {required: 'Adresse is required.'})}
-                                        error={errors.billing_streetAddress?.message}
-                                        isEmpty={!watchAllFields.billing_streetAddress}
-                                    />
-                                </div>
-                                <div className="w-full mt-2 mb-4">
-                                    <Input
-                                        type="text"
-                                        id="billing_postalCode"
-                                        name="billing_postalCode"
-                                        required={true}
-                                        placeholder="Code Postal *"
-                                        {...register('billing_postalCode', {required: 'Postal Code is required.'})}
-                                        error={errors.billing_postalCode?.message}
-                                        isEmpty={!watchAllFields.billing_postalCode}
-                                    />
-                                </div>
-                                <div className="w-full mt-2 mb-4">
-                                    <Input
-                                        type="text"
-                                        id="billing_locality"
-                                        name="billing_locality"
-                                        required={true}
-                                        placeholder="Ville *"
-                                        {...register('billing_locality', {required: 'Ville is required.'})}
-                                        error={errors.billing_locality?.message}
-                                        isEmpty={!watchAllFields.billing_locality}
-                                    />
-                                </div>
-                                <div className="w-full mt-2 mb-4 px-6" >
-                                    <Input
-                                        type="checkbox"
-                                        id="cgv"
-                                        name="cgv"
-                                        required={true}
-                                        label={true}
-                                        text="J'accepte les Conditions Générales de Vente"
-                                        {...register('cgv')}
-                                        isEmpty={!watchAllFields.cgv}
-                                    />
-                                </div>
+                            <div className="form-data__section  px-6 lg:px-8">
+                                <BillingForm getValues={getValues} register={register} watch={watch} errors={errors}
+                                             country={country}/>
+                                <CheckboxGroup onChange={handleCheckboxChange} register={register} watch={watch}
+                                               errors={errors}/>
+                                {showShipping && (<ShippingForm country={country} register={register} watch={watch}
+                                                                errors={errors}/>)}
                             </div>
                         </section>
                     </div>
                 </div>
             </div>
             <div className="form-bottom">
-                <div className="flex items-start justify-between">
-                    <div className="w-100 lg:w-3/5 px-16 my-3.5">
-                        <div className="guarantee-item mt-6 py-2.5 flex items-center justify-between">
+                <div className="flex flex-wrap flex-col-reverse lg:flex-row items-start justify-between">
+                    <div className="w-100 lg:w-3/5 px-6 lg:px-16 my-3.5">
+                        <div className="guarantee-item flex-wrap mt-6 py-2.5 flex items-center justify-center lg:justify-between">
                             <div className="guarantee-item__image px-3.5">
                                 <img src="/images/garantie.png" alt=""/>
                             </div>
@@ -287,10 +156,29 @@ const Home = () => {
                             </div>
                         </div>
                     </div>
-                    <div className="w-100 lg:w-2/5 px-8 my-3.5">
-                        <button className="submit-button" type="submit">Pay</button>
+                    <div className="w-100 lg:w-2/5 px-3 lg:px-3.5 my-3.5">
+                        <PaymentItem register={register} watch={watch} errors={errors}/>
+                        <div className="payment-block__info mt-6">
+                            <p>*Conditions de règlement : en commandant aujourd'hui, je m'inscris automatiquement au
+                                service
+                                GRATUIT de cure en abonnement. Lorsque ma cure actuelle se termine, je reçois une
+                                nouvelle
+                                cure facturée aux mêmes conditions avantageuses qu'aujourd'hui. La livraison est
+                                toujours
+                                gratuite et je ne dois pas repasser de commande. Mes coordonnées bancaires sont
+                                conservées
+                                pendant la durée de mon abonnement. Je reçois un email d'information avant chaque
+                                renouvellement de ma cure (pas de mauvaise surprise). Je peux suspendre, décaler ou
+                                annuler
+                                ma cure en abonnement par email ou téléphone librement, à tout moment, sans
+                                justification et
+                                sans le moindre frais.
+                            </p>
+                        </div>
+
                     </div>
                 </div>
+
             </div>
         </form>
     )

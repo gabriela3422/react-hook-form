@@ -22,6 +22,9 @@
 
     img {
       max-height: 159px;
+      @media(max-width: 991px){
+        margin: auto;
+      }
     }
   }
 }

@@ -3,7 +3,7 @@ import './Header.scss'
 const Header = () => {
     return (
         <header>
-            <div className="header-wrapper flex items-center justify-between px-8 py-3.5">
+            <div className="header-wrapper flex flex-wrap items-center justify-between px-8 py-3.5">
                 <a className="main-logo mx-auto px-3.5" href="/" title="">
                     <img src="/images/logo.png" alt=""/>
                 </a>

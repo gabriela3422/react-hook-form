@@ -76,3 +76,100 @@
     }
   }
 }
+
+.payment-block{
+  background-color: rgb(237, 237, 237);
+  border-radius: 20px;
+  border: 1px solid rgb(150, 211, 255);
+  .payment-tab__buttons{
+    .payment-tab__button{
+      position: relative;
+      cursor: pointer;
+      border-top-style: solid;
+      border-right-style: solid;
+      border-bottom-style: solid;
+      border-left-style: solid;
+      border-top-color: rgb(150, 211, 255);
+      border-right-color: rgb(150, 211, 255);
+      border-bottom-color: rgb(150, 211, 255);
+      border-left-color: rgb(150, 211, 255);
+      border-top-width: 3px;
+      border-right-width: 1.5px;
+      border-bottom-width: 3px;
+      border-left-width: 1.5px;
+      border-radius: 17px;
+
+      &.active{
+        background-color: rgb(255, 255, 255);
+        &:after{
+          border-top-style: solid;
+          border-right-style: solid;
+          border-bottom-style: solid;
+          border-left-style: solid;
+          border-image-source: initial;
+          border-image-slice: initial;
+          border-image-width: initial;
+          border-image-outset: initial;
+          border-image-repeat: initial;
+          border-right-color: rgba(150, 211, 255, 0);
+          border-bottom-color: rgba(150, 211, 255, 0);
+          border-left-color: rgba(150, 211, 255, 0);
+          border-top-color: rgb(150, 211, 255);
+          border-top-width: 14px;
+          border-right-width: 14px;
+          border-bottom-width: 14px;
+          border-left-width: 14px;
+          margin-left: -14px;
+          top: 100%;
+          left: 50%;
+          content: " ";
+          height: 0px;
+          width: 0px;
+          position: absolute;
+          pointer-events: none;
+          z-index: 5;
+        }
+      }
+      .payment-tab__icon{
+        img{
+          height: 30px;
+          display: block;
+          margin: auto;
+        }
+      }
+      span{
+        font-size: 16px;
+        line-height: 30px;
+        font-family: 'Arial';
+        color: rgb(75, 122, 166);
+      }
+    }
+  }
+  .payment-tab__content{
+    background-color: rgb(255, 255, 255);
+    .payment-content__item{
+      p{
+        font-size: 14px;
+        line-height: 30px;
+        font-family: "Arial";
+      }
+      .payment-details{
+        label{
+          font-family: "Arial";
+          text-transform: uppercase;
+          font-size: 12px;
+          line-height: 30px;
+          color: rgb(76, 76, 76);
+        }
+      }
+    }
+  }
+}
+.payment-block__info{
+  p{
+    font-family: "Arial";
+    font-size: 11px;
+    line-height: 17px;
+    color: var(--black-color);
+  }
+}

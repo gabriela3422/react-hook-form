@@ -1,0 +1,20 @@
+[
+  { "value": "FRA", "label": "France Métropolitaine" },
+  { "value": "BEL", "label": "Belgique" },
+  { "value": "REU", "label": "Réunion" },
+  { "value": "LUX", "label": "Luxembourg" },
+  { "value": "DEU", "label": "Allemagne" },
+  { "value": "ESP", "label": "Espagne" },
+  { "value": "GLP", "label": "Guadeloupe" },
+  { "value": "GUF", "label": "Guyane Française" },
+  { "value": "MTQ", "label": "Martinique" },
+  { "value": "MYT", "label": "Mayotte" },
+  { "value": "NCL", "label": "Nouvelle-Calédonie" },
+  { "value": "NLD", "label": "Pays-Bas" },
+  { "value": "PYF", "label": "Polynésie Française" },
+  { "value": "PRT", "label": "Portugal" },
+  { "value": "BLM", "label": "Saint-Barthélemy" },
+  { "value": "MAF", "label": "Saint-Martin" },
+  { "value": "SPM", "label": "Saint-Pierre-et-Miquelon" },
+  { "value": "ATF", "label": "Terres Australes Françaises" }
+]

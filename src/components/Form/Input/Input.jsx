@@ -22,7 +22,7 @@ const Input = React.forwardRef(
         const showCheckImage = !isEmpty && type !== 'radio' && type !== 'checkbox';
 
         return (
-            <div className={`form-group ${isEmpty ? 'input-error' : ''} ${type === 'radio' || type === 'checkbox' ? 'custom-form-group' : ''} `}>
+            <div className={`form-group ${isEmpty && required ? 'input-error' : ''} ${type === 'radio' || type === 'checkbox' ? 'custom-form-group' : ''} `}>
                 <input type={type}
                        id={id}
                        name={name}
@@ -34,7 +34,7 @@ const Input = React.forwardRef(
                        {...rest}
                 />
                 {label && <label className="label-control" htmlFor={id}>{text}</label>}
-                {error && <span className="error-message">{error}</span>}
+                {error && <span className="error-message block">{error}</span>}
                 {showErrorImage && <img src={'/images/error-icon.svg'} className="empty-icon"/>}
                 {showCheckImage && <img src={'/images/check-icon.svg'} className="empty-icon"/>}
             </div>
