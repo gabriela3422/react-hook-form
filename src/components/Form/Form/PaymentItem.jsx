@@ -42,7 +42,7 @@ const PaymentItem = ({register, watch, errors}) => {
                         )}
                         {isActive === 2 && (
                             <div className="payment-content__item">
-                                <p className="text-center my-4">Vous trouverez votre numéro IBAN et code BIC/SWIFT sur
+                                <p className="text-center px-6 my-4">Vous trouverez votre numéro IBAN et code BIC/SWIFT sur
                                     votre relevé d'identité
                                     bancaire (RIB)
                                 </p>

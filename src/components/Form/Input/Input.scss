@@ -79,7 +79,9 @@
     }
     &.input-empty{
       border-color: #dc3545;
-
+    }
+    &.input-error{
+      border-color: #dc3545;
     }
   }
   .select-field{

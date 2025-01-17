@@ -16,7 +16,7 @@ export default {
     container: {
       padding: {
         DEFAULT: '0',
-        '991': '38px', 
+        '991': '38px',
       },
       center: true,
       screens: {

@@ -6,11 +6,9 @@ import Product from "../../components/Product/Product.jsx";
 import {useState} from "react";
 import Input from "../../components/Form/Input/Input.jsx";
 import {useForm} from "react-hook-form";
-import Select from "../../components/Form/Select/Select.jsx";
 import BillingForm from "../../components/Form/Form/BillingForm.jsx";
 import CheckboxGroup from "../../components/Form/Form/CheckboxGroup.jsx";
 import ShippingForm from "../../components/Form/Form/ShippingForm.jsx";
-import PaymentDetails from "../../components/Form/Form/PaymentDetails.jsx";
 import PaymentItem from "../../components/Form/Form/PaymentItem.jsx";
 
 const Home = () => {
@@ -138,7 +136,7 @@ const Home = () => {
             <div className="form-bottom">
                 <div className="flex flex-wrap flex-col-reverse lg:flex-row items-start justify-between">
                     <div className="w-100 lg:w-3/5 px-6 lg:px-16 my-3.5">
-                        <div className="guarantee-item flex-wrap mt-6 py-2.5 flex items-center justify-center lg:justify-between">
+                        <div className="guarantee-item flex-wrap lg:flex-nowrap mt-6 py-2.5 flex items-center justify-center lg:justify-between">
                             <div className="guarantee-item__image px-3.5">
                                 <img src="/images/garantie.png" alt=""/>
                             </div>

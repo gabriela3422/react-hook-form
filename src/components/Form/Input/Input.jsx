@@ -18,8 +18,8 @@ const Input = React.forwardRef(
         }, ref
     ) => {
 
-        const showErrorImage = isEmpty && type !== 'radio' && type !== 'checkbox';
-        const showCheckImage = !isEmpty && type !== 'radio' && type !== 'checkbox';
+        const showErrorImage = (isEmpty || error) && type !== 'radio' && type !== 'checkbox';
+        const showCheckImage = !isEmpty && !error && type !== 'radio' && type !== 'checkbox';
 
         return (
             <div className={`form-group ${isEmpty && required ? 'input-error' : ''} ${type === 'radio' || type === 'checkbox' ? 'custom-form-group' : ''} `}>
